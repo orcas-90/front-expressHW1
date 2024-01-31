@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="click">Count click<span class="result"></span></button>
+  </body>
+  <script>
+    const countClick = document.querySelector('.click');
+    const result = document.querySelector('.result');
+    let count;
+
+        fetch('http://localhost:3000/?count=60')
+          .then((response) => response.json())
+          .then((countResult) => {
+            countClick.addEventListener('click', function () {
+
+           count = +countResult++;
+            result.textContent = '    Колличество кликов =' + countResult;
+          });
+
+    });
+  </script>
+</html>
