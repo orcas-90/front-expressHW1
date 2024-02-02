@@ -6,22 +6,30 @@
     <title>Document</title>
   </head>
   <body>
-    <button class="click">Count click<span class="result"></span></button>
+    <button class="click"><span class="result"></span></button>
   </body>
+  <script src="/req.js"></script>
   <script>
     const countClick = document.querySelector('.click');
     const result = document.querySelector('.result');
     let count;
+    let results;
 
-        fetch('http://localhost:3000/?count=60')
-          .then((response) => response.json())
-          .then((countResult) => {
-            countClick.addEventListener('click', function () {
-
-           count = +countResult++;
-            result.textContent = '    Колличество кликов =' + countResult;
-          });
-
+    fetch('http://localhost:3000/')
+      .then((response) => response.json())
+      .then((countResult) => req(countResult));
+    countClick.addEventListener('click', function () {
+      fetch('http://localhost:3000/count/create1', {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          count: results,
+        }),
+      })
+        .then((response) => response.json())
+        .then((countResult) => req(countResult));
     });
   </script>
 </html>
