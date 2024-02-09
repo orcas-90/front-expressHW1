@@ -19,7 +19,7 @@
       .then((response) => response.json())
       .then((countResult) => req(countResult));
     countClick.addEventListener('click', function () {
-      fetch('http://localhost:3000/count/create1', {
+      fetch('http://localhost:3000/count/create', {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json',
